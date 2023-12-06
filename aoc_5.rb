@@ -1,5 +1,5 @@
 def main
-    # p part1
+    p part1
     p part2
 end
 
@@ -24,7 +24,7 @@ def part1
     seeds = nil
     curr_map = ""
     maps = Hash.new([])
-    File.readlines("input-5.txt").each_with_index do |line, i|
+    File.readlines("input/input-5.txt").each_with_index do |line, i|
         line = line.split(" ")
         if i == 0
             seeds = line[1..].map(&:to_i)
@@ -108,7 +108,7 @@ def part2
     seeds = nil
     curr_map = ""
     maps = Hash.new([])
-    File.readlines("input-5.txt").each_with_index do |line, i|
+    File.readlines("input/input-5.txt").each_with_index do |line, i|
         line = line.split(" ")
         if i == 0
             seeds = line[1..].map(&:to_i).each_slice(2).to_a.sort_by! {|x| x[0]}
