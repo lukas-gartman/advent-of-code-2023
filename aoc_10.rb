@@ -26,15 +26,16 @@ def main
 end
 
 def getDirection(diagram, point, prev_dir)
+    tiles = {"|" => :NS, "-" => :EW, "L" => :NE, "J" => :NW, "7" => :SW, "F" => :SE, "." => nil, "S" => :start}
     x, y = point
 
     curr_pipe = $TILES[diagram[x][y]]
     case curr_pipe
     when :start
-        return :north if $TILES[diagram[x][y-1]] == :NS
-        return :east  if $TILES[diagram[x+1][y]] == :EW
-        return :south if $TILES[diagram[x][y+1]] == :NS
-        return :west  if $TILES[diagram[x-1][y]] == :EW
+        return :north if tiles[diagram[x][y-1]] == :NS
+        return :east  if tiles[diagram[x+1][y]] == :EW
+        return :south if tiles[diagram[x][y+1]] == :NS
+        return :west  if tiles[diagram[x-1][y]] == :EW
     when :NS then return prev_dir == :north ? :north : :south
     when :EW then return prev_dir == :east  ? :east  : :west
     when :NE then return prev_dir == :west  ? :north : :east
@@ -99,7 +100,5 @@ def part2
     end
     return total
 end
-
-$TILES = {"|" => :NS, "-" => :EW, "L" => :NE, "J" => :NW, "7" => :SW, "F" => :SE, "." => nil, "S" => :start}
 
 main
